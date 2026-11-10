@@ -140,7 +140,7 @@ uint32_t format_class(VkFormat vf, int nvn_format, int bpb, bool astc_decoded) {
     if (is_bc(vf) || is_astc(vf)) return 0x20000u | (uint32_t)linear_twin(vf);
     int from = 0;
     widened(vf, &from);
-    return 0x40000u | (uint32_t)bpb | (from ? 0x100u : 0u);
+    return 0x40000u | (uint32_t)bpb | (from ? 0x100u : 0u) | (vf == VK_FORMAT_A2B10G10R10_UNORM_PACK32 ? 0x200u : 0u);
 }
 
 VkComponentSwizzle component(unsigned s) {
